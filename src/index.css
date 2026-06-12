@@ -18,3 +18,54 @@ body,
   overflow-x: hidden;
     background: #1c1c1a;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* IMPORTANT: prevents sideways scroll on phones */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* FIX mobile viewport height issues (VERY IMPORTANT for iPhone/Android) */
+#root {
+  min-height: 100vh;
+  min-height: 100dvh; /* modern mobile fix */
+}
+
+/* Make images and media fully responsive */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* MOBILE FULL SCREEN SAFETY */
+@media screen and (max-width: 768px) {
+
+  html, body {
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  /* ensures hero sections fill screen properly */
+  section {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh; /* iPhone dynamic viewport fix */
+  }
+
+  /* prevent weird padding issues on mobile browsers */
+  .header {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+  }
+}

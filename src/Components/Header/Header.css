@@ -1,0 +1,129 @@
+.header {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* IMAGE LAYER */
+.header__image {
+  position: absolute;
+  inset: 0;
+}
+
+.slide-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* DARK OVERLAY (VERY IMPORTANT FOR FASHION LOOK) */
+.header__image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* TEXT */
+.header__content {
+  position: relative;
+  z-index: 10;
+  color: #d0b28c;
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 0 60px;
+}
+
+.header__content h1 {
+  font-size: 4rem;
+  letter-spacing: 4px;
+}
+
+.header__content p {
+  max-width: 500px;
+  margin-top: 15px;
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+.header__content button {
+  margin-top: 25px;
+  width: fit-content;
+  padding: 12px 25px;
+  border: none;
+  background: #d0b28c;
+  color: #000;
+  cursor: pointer;
+  letter-spacing: 2px;
+}
+
+/* Button */
+.header__content button {
+  padding: 14px 32px;
+  border: none;
+  background: #d0b28c;
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+.header__content button:hover {
+  transform: translateY(-2px);
+  background: #c49d73;
+}
+
+/* Navbar layering */
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+
+
+
+@media (max-width: 768px) {
+  .header__image img {
+    object-position: 74% 50%; /* 👈 slight shift right for tablet */
+     transform: scale(1); /* 👈 zoom out (less than 1 = zoom out) */
+  }
+
+  .header {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .header__content {
+    margin-left: 0;
+    padding: 0 20px;
+  }
+
+  .header__content p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__image img {
+    object-position: 74% 50%; /* 👈 push image slightly right for mobile focus */
+  }
+
+  .header__content h1 {
+    font-size: 2.2rem;
+  }
+
+  .header__content button {
+    width: 100%;
+  }
+}
