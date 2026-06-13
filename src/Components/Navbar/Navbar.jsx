@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Navbar.css";
+import { HiOutlineShoppingBag } from "react-icons/hi2";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,14 +26,21 @@ function Navbar() {
         <a href="/">CART ({cartCount})</a>
       </div>
 
-      <div className="navbar__actions">
-        <button
-          className="menu-btn"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? "✕" : "☰"}
-        </button>
-      </div>
+<div className="navbar__actions">
+
+  <button className="mobile-cart-btn">
+    <HiOutlineShoppingBag />
+    <span className="cart-count">{cartCount}</span>
+  </button>
+
+  <button
+    className="menu-btn"
+    onClick={() => setMenuOpen(!menuOpen)}
+  >
+    {menuOpen ? "✕" : "☰"}
+  </button>
+
+</div>
     </header>
   );
 }
