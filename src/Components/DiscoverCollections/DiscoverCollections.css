@@ -1,0 +1,146 @@
+.discover {
+  width: 100%;
+  padding: 70px 5%;
+  background: #242422;
+}
+
+.discover-header {
+  margin-bottom: 30px;
+}
+
+.discover-header h2 {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: white;
+  font-weight: 600;
+}
+
+.discover-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.collection-card {
+  position: relative;
+  height: 420px; /* reduced from 520 */
+  border-radius: 12px;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+
+  transition: all 0.4s ease;
+}
+
+.collection-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85),
+    rgba(0, 0, 0, 0.15)
+  );
+
+  z-index: 1;
+}
+
+.collection-card:hover {
+  transform: translateY(-6px);
+}
+
+.collection-card:hover {
+  background-size: 108%;
+}
+
+.card-content {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+
+  z-index: 2;
+  color: white;
+}
+
+.card-content h3 {
+  font-size: 1.7rem;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  font-family: serif;
+}
+
+.card-content button {
+  border: none;
+  background: transparent;
+
+  color: #d7b98e;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 0.95rem;
+}
+
+.card-content button span {
+  transition: transform 0.3s ease;
+}
+
+.collection-card:hover button span {
+  transform: translateX(6px);
+}
+
+@media (max-width: 768px) {
+  .discover {
+    padding: 50px 20px;
+  }
+
+  .discover-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .collection-card {
+    height: 150px;
+
+    display: flex;
+    align-items: center;
+
+    border-radius: 12px;
+
+    background-size: cover;
+    background-position: center;
+
+    overflow: hidden;
+  }
+
+  .collection-card::before {
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.85),
+      rgba(0, 0, 0, 0.3)
+    );
+  }
+
+  .card-content {
+    left: 20px;
+    bottom: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .card-content h3 {
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+  }
+
+  .card-content button {
+    font-size: 0.85rem;
+  }
+}

@@ -43,7 +43,7 @@ function Header() {
       // IMAGE ANIMATION (morph)
       gsap.to(imgRefs.current[current], {
         opacity: 0,
-        scale: 1.15,
+        scale: 1.05,
         duration: 1.5,
         ease: "power2.inOut",
       });

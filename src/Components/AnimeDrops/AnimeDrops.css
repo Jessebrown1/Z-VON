@@ -1,0 +1,166 @@
+.anime-drops {
+  padding: 70px 5%;
+  background: #242422;
+
+  margin-top: -100px; /* 👈 MOVE IT UP (adjust this) */
+}
+
+.anime-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.anime-header h2 {
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: white;
+  font-weight: 600;
+}
+
+.drop-slide {
+  position: relative;
+  height: 400px;
+  border-radius: 14px;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.25)
+  );
+}
+
+.slide-content {
+  position: absolute;
+  left: 60px;
+  top: 50%;
+
+  transform: translateY(-50%);
+  z-index: 2;
+
+  color: white;
+  max-width: 450px;
+
+  animation: fadeUp 0.6s ease;
+}
+
+.slide-content h3 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.slide-content p {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.slide-content span {
+  display: block;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.slide-content button {
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+
+  background: #d7b98e;
+  color: #111;
+
+  font-weight: 600;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+
+  margin-top: 18px;
+}
+
+.dots span {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+  background: #ccc;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.dots span.active {
+  background: #111;
+  transform: scale(1.2);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateY(0);
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .drop-slide {
+    height: 320px;
+  }
+
+  .slide-content h3 {
+    font-size: 2.2rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .anime-drops {
+    padding: 50px 20px;
+      margin-top: -299px; /* 👈 MOVE IT UP (adjust this) */
+  }
+
+  .drop-slide {
+    height: 220px;
+    border-radius: 10px;
+  }
+
+  .slide-content {
+    left: 20px;
+    max-width: 220px;
+  }
+
+  .slide-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+  }
+
+  .slide-content p {
+    font-size: 0.85rem;
+  }
+
+  .slide-content span {
+    font-size: 0.75rem;
+    margin-bottom: 12px;
+  }
+
+  .slide-content button {
+    padding: 8px 14px;
+    font-size: 0.75rem;
+  }
+}

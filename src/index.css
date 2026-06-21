@@ -4,6 +4,14 @@
    iOS + Android immersive viewport
 ========================= */
 
+html {
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
 /* Fix dynamic mobile viewport (address bar, bottom bar, etc.) */
 @supports (height: 100dvh) {
   #root {
