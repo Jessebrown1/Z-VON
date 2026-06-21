@@ -2,7 +2,8 @@
   padding: 70px 5%;
   background: #242422;
 
-  margin-top: -100px; /* 👈 MOVE IT UP (adjust this) */
+margin-top: 0;
+padding-top: 20px;/* 👈 MOVE IT UP (adjust this) */
 }
 
 .anime-header {
