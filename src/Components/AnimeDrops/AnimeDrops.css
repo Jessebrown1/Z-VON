@@ -132,7 +132,7 @@
 @media (max-width: 768px) {
   .anime-drops {
     padding: 50px 20px;
-      margin-top: -299px; /* 👈 MOVE IT UP (adjust this) */
+      margin-top: -240px; /* 👈 MOVE IT UP (adjust this) */
   }
 
   .drop-slide {
