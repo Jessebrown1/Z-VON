@@ -1,0 +1,130 @@
+.showcase {
+  width: 100%;
+  padding: clamp(16px, 2.5vw, 32px) clamp(12px, 2vw, 24px);
+  background: #f7f4ef;
+}
+
+.showcase-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: clamp(12px, 2vw, 20px);
+  gap: 12px;
+}
+
+.showcase-header h2 {
+  margin: 0;
+  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #5a4a37;
+}
+
+.showcase-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #7c6240;
+  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.showcase-link span {
+  transition: transform 0.25s ease;
+}
+
+.showcase-link:hover span {
+  transform: translateX(4px);
+}
+
+/* ================= GRID (DESKTOP DEFAULT) ================= */
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: clamp(10px, 1.5vw, 18px);
+}
+
+/* ================= PRODUCT CARD ================= */
+.product-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.product-image {
+  position: relative;
+  overflow: hidden;
+  background: #ede7df;
+  aspect-ratio: 1 / 1.25;
+  border-radius: 10px;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.06);
+}
+
+
+.product-info {
+  padding-top: 10px;
+}
+
+.product-info h3 {
+  margin: 0 0 6px;
+  font-size: clamp(0.72rem, 0.9vw, 0.85rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #222;
+}
+
+.product-info p {
+  margin: 0;
+  font-size: clamp(0.7rem, 0.85vw, 0.8rem);
+  color: #5f5f5f;
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 1024px) {
+  .showcase-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+}
+/* ================= MOBILE (NO HORIZONTAL SCROLL) ================= */
+@media (max-width: 768px) {
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .product-card {
+    flex: unset; /* removes flex behavior */
+  }
+
+  .wishlist-btn {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 420px) {
+  .showcase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card {
+    width: 100%;
+  }
+}

@@ -1,115 +1,171 @@
-.anime-drops {
-  padding: 70px 5%;
-  background: #242422;
-
-margin-top: 0;
-padding-top: 20px;/* 👈 MOVE IT UP (adjust this) */
+.discover {
+  width: 100%;
+  padding: 100px 0;
+  background: radial-gradient(
+    circle at top,
+    #2c2c28 0%,
+    #1a1a18 100%
+  );
+  overflow: hidden;
 }
 
-.anime-header {
+/* INNER CONTAINER */
+.discover-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* HEADER */
+.discover-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
-.anime-header h2 {
-  font-size: 0.9rem;
-  letter-spacing: 2px;
-  color: white;
-  font-weight: 600;
+.discover-header h2 {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+  text-transform: uppercase;
 }
 
-.drop-slide {
+/* SLIDER CARD (same as drop-slide) */
+.slider-card {
   position: relative;
-  height: 400px;
-  border-radius: 14px;
+  height: 480px;
+  border-radius: 18px;
   overflow: hidden;
+
+  box-shadow: 0 25px 80px rgba(0,0,0,0.35);
+
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.slider-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 35px 100px rgba(0,0,0,0.45);
+}
+
+/* IMAGE CARD */
+.collection-card {
+  width: 100%;
+  height: 100%;
 
   background-size: cover;
   background-position: center;
+
+  position: relative;
 }
 
-.overlay {
+/* OVERLAY (same as anime) */
+.collection-card::before {
+  content: "";
   position: absolute;
   inset: 0;
 
   background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.8),
-    rgba(0, 0, 0, 0.25)
+    110deg,
+    rgba(0,0,0,0.85) 0%,
+    rgba(0,0,0,0.35) 45%,
+    rgba(0,0,0,0.1) 100%
   );
 }
 
-.slide-content {
+/* CONTENT */
+.card-content {
   position: absolute;
-  left: 60px;
+  left: 70px;
   top: 50%;
-
   transform: translateY(-50%);
   z-index: 2;
 
   color: white;
-  max-width: 450px;
+  max-width: 420px;
 
-  animation: fadeUp 0.6s ease;
+  animation: fadeUp 0.7s ease;
 }
 
-.slide-content h3 {
-  font-size: 3rem;
-  margin-bottom: 10px;
+.card-content h3 {
+  font-size: 3.2rem;
+  line-height: 1;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
 }
 
-.slide-content p {
-  font-size: 1.1rem;
-  margin-bottom: 8px;
-}
-
-.slide-content span {
-  display: block;
-  margin-bottom: 20px;
-  opacity: 0.9;
-}
-
-.slide-content button {
-  padding: 12px 24px;
+/* BUTTON */
+.card-content button {
+  padding: 12px 26px;
   border: none;
   cursor: pointer;
 
-  background: #d7b98e;
+  background: linear-gradient(135deg, #d7b98e, #b08a5a);
   color: #111;
 
   font-weight: 600;
-}
+  letter-spacing: 0.5px;
 
-.dots {
+  border-radius: 8px;
+
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 8px;
 
-  margin-top: 18px;
+  transition: all 0.25s ease;
 }
 
-.dots span {
-  width: 10px;
-  height: 10px;
+.card-content button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
 
+.card-content button span {
+  transition: transform 0.3s ease;
+}
+
+.card-content button:hover span {
+  transform: translateX(6px);
+}
+
+/* CONTROLS */
+.slider-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+
+  display: flex;
+  gap: 10px;
+}
+
+.slider-controls button {
+  width: 42px;
+  height: 42px;
+
+  border: none;
   border-radius: 50%;
-  background: #ccc;
+
+  background: rgba(0,0,0,0.6);
+  color: white;
 
   cursor: pointer;
-  transition: 0.3s;
+  font-size: 18px;
+
+  transition: 0.3s ease;
 }
 
-.dots span.active {
-  background: #111;
-  transform: scale(1.2);
+.slider-controls button:hover {
+  background: black;
+  transform: scale(1.05);
 }
 
+/* ANIMATION */
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(-50%) translateY(20px);
+    transform: translateY(-45%) translateY(20px);
   }
 
   to {
@@ -118,49 +174,42 @@ padding-top: 20px;/* 👈 MOVE IT UP (adjust this) */
   }
 }
 
-/* Tablet */
+/* TABLET */
 @media (max-width: 1024px) {
-  .drop-slide {
-    height: 320px;
+  .slider-card {
+    height: 360px;
   }
 
-  .slide-content h3 {
-    font-size: 2.2rem;
+  .card-content h3 {
+    font-size: 2.4rem;
   }
 }
 
-/* Mobile */
+/* MOBILE */
 @media (max-width: 768px) {
-  .anime-drops {
-    padding: 50px 20px;
-      margin-top: -240px; /* 👈 MOVE IT UP (adjust this) */
+  .discover {
+    padding: 60px 0;
   }
 
-  .drop-slide {
-    height: 220px;
-    border-radius: 10px;
+  .discover-inner {
+    padding: 0 18px;
   }
 
-  .slide-content {
-    left: 20px;
-    max-width: 220px;
+  .slider-card {
+    height: 260px;
+    border-radius: 14px;
   }
 
-  .slide-content h3 {
-    font-size: 1.4rem;
-    margin-bottom: 6px;
+  .card-content {
+    left: 18px;
+    max-width: 260px;
   }
 
-  .slide-content p {
-    font-size: 0.85rem;
+  .card-content h3 {
+    font-size: 1.6rem;
   }
 
-  .slide-content span {
-    font-size: 0.75rem;
-    margin-bottom: 12px;
-  }
-
-  .slide-content button {
+  .card-content button {
     padding: 8px 14px;
     font-size: 0.75rem;
   }
