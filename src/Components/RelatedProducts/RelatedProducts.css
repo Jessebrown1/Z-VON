@@ -1,0 +1,124 @@
+.related {
+  padding: 80px 60px;
+  background: #f6f6f6;
+
+  /* REQUIRED for infinite scroll */
+  max-height: 100vh;
+  overflow-y: auto;
+
+  scrollbar-width: none; /* Firefox */
+}
+
+.related::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* ================= HEADER ================= */
+.related h2 {
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  color: #111;
+}
+
+/* ================= GRID (DESKTOP) ================= */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+/* ================= CARD ================= */
+.related-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+
+  transition: transform 0.25s ease;
+}
+
+.related-card:hover {
+  transform: translateY(-4px);
+}
+
+/* IMAGE */
+.related-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1.1;
+  object-fit: cover;
+  border-radius: 12px;
+
+  transition: transform 0.35s ease;
+}
+
+.related-card:hover img {
+  transform: scale(1.04);
+}
+
+/* TEXT */
+.related-card h3 {
+  font-size: 0.85rem;
+  margin: 10px 0 4px;
+
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.related-card p {
+  font-size: 0.8rem;
+  opacity: 0.65;
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 1024px) {
+  .related {
+    padding: 60px 30px;
+  }
+
+  .related-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .related {
+    padding: 40px 18px;
+
+    /* IMPORTANT: prevent weird scroll clash on mobile */
+    max-height: none;
+    overflow: visible;
+  }
+
+  .related-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .related h2 {
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+  }
+
+  .related-card h3 {
+    font-size: 0.75rem;
+  }
+
+  .related-card p {
+    font-size: 0.72rem;
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 420px) {
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .related {
+    padding: 30px 14px;
+  }
+}

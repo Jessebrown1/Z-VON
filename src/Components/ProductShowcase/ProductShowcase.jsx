@@ -1,7 +1,5 @@
 import "./ProductShowcase.css";
 import { Link } from "react-router-dom";
-import { Heart } from "lucide-react";
-
 import { products } from "../products";
 
 function ProductShowcase() {
@@ -19,22 +17,25 @@ function ProductShowcase() {
         {products.map((product) => (
           <Link
             key={product.id}
-            to={`/product/${product.id}`}   // ✅ FIXED ROUTE FORMAT
+            to={`/product/${product.id}`}
             className="product-card"
           >
-            <button
-              className="wishlist-btn"
-              onClick={(e) => e.preventDefault()}
-            >
-              <Heart size={16} />
-            </button>
-
             <div className="product-image">
-              <img src={product.image[0]} alt={product.name} />
+              <img
+                src={product.image?.[0]}
+                alt={product.title?.main}
+              />
             </div>
 
-            <div className="product-info">
-              <h3>{product.name}</h3>
+            <div className="product-infoo">
+              <h3>{product.title?.main}</h3>
+
+              {product.title?.subtitle && (
+                <p className="product-subtitle">
+                  {product.title.subtitle}
+                </p>
+              )}
+
               <p>{product.price}</p>
             </div>
           </Link>

@@ -44,8 +44,13 @@
 /* ================= GRID (DESKTOP DEFAULT) ================= */
 .showcase-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: clamp(10px, 1.5vw, 18px);
+
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+
+  gap: 18px;
+
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 /* ================= PRODUCT CARD ================= */
@@ -76,11 +81,11 @@
 }
 
 
-.product-info {
+.product-infoo {
   padding-top: 10px;
 }
 
-.product-info h3 {
+.product-infoo h3 {
   margin: 0 0 6px;
   font-size: clamp(0.72rem, 0.9vw, 0.85rem);
   font-weight: 500;
@@ -88,7 +93,7 @@
   color: #222;
 }
 
-.product-info p {
+.product-infoo p {
   margin: 0;
   font-size: clamp(0.7rem, 0.85vw, 0.8rem);
   color: #5f5f5f;
