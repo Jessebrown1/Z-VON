@@ -23,13 +23,7 @@
   object-fit: cover;
 }
 
-/* DARK OVERLAY */
-.header__image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-}
+
 
 /* =========================
    TEXT LAYER
@@ -37,7 +31,7 @@
 .header__content {
   position: relative;
   z-index: 10; /* above image */
-  color: #c8bba8;
+  color: #7A7A7A;
 
   height: 100%;
   display: flex;
@@ -49,6 +43,7 @@
 
 .header__content h1 {
   font-size: 4rem;
+  
   letter-spacing: 4px;
 }
 
@@ -57,7 +52,7 @@
   margin-top: 15px;
   font-size: 1.1rem;
   opacity: 0.85;
-  color: #bfae97;
+  color: #666666;
 }
 
 /* BUTTON (cleaned duplicates) */
@@ -109,22 +104,29 @@
   .header__image img {
     object-position: 74% 50%;
     transform: scale(1);
+
   }
 
   
 
   .header {
     text-align: center;
+    
+    
   }
 
   .header__content {
     padding: 0 20px;
     align-items: center;
+    
+    
   }
 
   .header__content p {
     margin-left: auto;
     margin-right: auto;
+    
+    
   }
 }
 
