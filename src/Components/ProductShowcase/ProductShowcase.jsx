@@ -16,11 +16,11 @@ function ProductShowcase() {
 
       <div className="showcase-grid">
         {products.map((product) => (
-          <Link
-            key={product.id}
-            to={`/products/${product.id}`}   // ✅ FIXED HERE
-            className="product-card"
-          >
+<Link
+  key={product.id}
+  to={`/products/${product.id}`}
+  className="product-card"
+>
             <div className="product-image">
               <img
                 src={product.image?.[0]}

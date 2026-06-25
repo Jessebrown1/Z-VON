@@ -17,7 +17,7 @@ function ScrollToTop() {
   return null;
 }
 
-/* ================= ROUTES WITH ANIMATION ================= */
+/* ================= ROUTES ================= */
 function AppRoutes() {
   const location = useLocation();
 
@@ -25,13 +25,11 @@ function AppRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
 
-        {/* HOME */}
         <Route path="/" element={<Home />} />
 
-        {/* PRODUCT PAGE (FIXED CONSISTENCY) */}
+        {/* ✅ FIXED PRODUCT ROUTE */}
         <Route path="/products/:id" element={<Product />} />
 
-        {/* LIMITED PAGE */}
         <Route path="/limited" element={<LimitedPage />} />
 
       </Routes>
@@ -39,7 +37,6 @@ function AppRoutes() {
   );
 }
 
-/* ================= APP ================= */
 export default function App() {
   return (
     <BrowserRouter>

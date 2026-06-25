@@ -4,16 +4,13 @@ import { Link } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import "./LimitedPage.css";
 
-
 export default function LimitedPage() {
-  // strict boolean check (safe)
   const limitedItems = products.filter(
     (p) => p.limitedEdition === true
   );
 
   return (
     <>
-      {/* NAVBAR */}
       <Navbar />
 
       <motion.section

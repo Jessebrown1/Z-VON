@@ -44,7 +44,7 @@ export default function RelatedProducts({ currentId }) {
 
       <div className="related-grid">
         {visibleProducts.map((p) => (
-          <Link key={p.id} to={`/product/${p.id}`} className="related-card">
+          <Link key={p.id} to={`/products/${p.id}`} className="related-card">
 
             <img src={p.image[0]} alt={p.title?.main} />
 
