@@ -1,8 +1,24 @@
-import product1 from "../assets/product1.jpg";
-import product2 from "../assets/product2.jpg";
-import product3 from "../assets/product3.jpg";
-import product4 from "../assets/product4.jpg";
-import product5 from "../assets/product5.jpg";
+import knit1 from "../assets/knit1.png";
+import knit2 from "../assets/knit2.png";
+import knit3 from "../assets/knit3.png";
+import knit4 from "../assets/knit4.png";
+
+import hoodie1 from "../assets/hoodie1.png";
+import hoodie2 from "../assets/hoodie2.png";
+
+import over1 from "../assets/over1.png";
+import over2 from "../assets/over2.png";
+import over3 from "../assets/over3.png";
+import over4 from "../assets/over4.png";
+
+import car1 from "../assets/car1.png";
+import car2 from "../assets/car2.png";
+import car3 from "../assets/car3.png";
+
+import lav1 from "../assets/lav1.png";
+import lav2 from "../assets/lav2.png";
+import lav3 from "../assets/lav3.png";
+
 
 /* ================= PRODUCTS ================= */
 
@@ -13,10 +29,12 @@ export const products = [
       main: "ZÉVON Knit Polo",
       subtitle: "Heavyweight Edition",
     },
-    price: "₵1,299.00",
-    image: [product1, product2, product3, product4, product5],
+    price: "₵200.00",
+    image: [knit1,knit4, knit2, knit3],
     stock: 12,
+    isLowStock: false,
     limitedEdition: false,
+    is3D: true,
 
     sizes: {
       S: true,
@@ -38,13 +56,15 @@ export const products = [
   {
     id: 2,
     title: {
-      main: "Black Cowl-Back Dress",
+      main: "ZÉVON Black Hoodie",
       subtitle: "Evening Collection",
     },
-    price: "₵1,499.00",
-    image: [product2, product3, product4, product5],
+    price: "₵250.00",
+    image: [hoodie1, hoodie2],
     stock: 1,
-    limitedEdition: true,
+    isLowStock: true,
+    limitedEdition: false,
+    is3D: true,
 
     sizes: {
       S: true,
@@ -69,10 +89,11 @@ export const products = [
       main: "ZÉVON Oversized Tee",
       subtitle: "Street Essentials",
     },
-    price: "₵899.00",
-    image: [product3, product4, product5],
+    price: "₵100",
+    image: [over1, over2, over3, over4],
     stock: 8,
     limitedEdition: false,
+    is3D: true,
 
     sizes: {
       S: true,
@@ -97,10 +118,12 @@ export const products = [
       main: "ZÉVON Cargo Pants",
       subtitle: "Utility Drop",
     },
-    price: "₵1,299.00",
-    image: [product4, product5],
-    stock: 5,
+    price: "₵300.00",
+    image: [car3, car1, car2],
+    stock: 11,
+    isLowStock: false,
     limitedEdition: true,
+    is3D: true,
 
     sizes: {
       S: false,
@@ -122,13 +145,15 @@ export const products = [
   {
     id: 5,
     title: {
-      main: "ZÉVON Hoodie",
-      subtitle: "Core Collection",
+      main: "Oversized Tee in Lavender",
+      subtitle: "ZÉVON Essentials",
     },
-    price: "₵1,199.00",
-    image: [product5, product1, product2, product3, product4],
-    stock: 3,
-    limitedEdition: false,
+    price: "₵100.00",
+    image: [lav1, lav2, lav3],
+    stock: 0,
+    isLowStock: true,
+    limitedEdition: true,
+    is3D: true,
 
     sizes: {
       S: true,

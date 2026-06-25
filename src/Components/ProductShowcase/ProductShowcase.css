@@ -1,7 +1,7 @@
 .showcase {
   width: 100%;
   padding: clamp(16px, 2.5vw, 32px) clamp(12px, 2vw, 24px);
-  background: #f7f4ef;
+  background: white;
 }
 
 .showcase-header {

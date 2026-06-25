@@ -20,8 +20,8 @@ function Navbar() {
 
       {/* CENTER NAV */}
       <nav className={`navbar__links ${menuOpen ? "active" : ""}`}>
-        <Link className={isActive("/shop") ? "active" : ""} to="/shop">
-          SHOP
+        <Link className={isActive("/home") ? "active" : ""} to="/">
+          HOME
         </Link>
 
         <Link className={isActive("/collections") ? "active" : ""} to="/collections">
@@ -49,12 +49,14 @@ function Navbar() {
           <span className="cart-count">{cartCount}</span>
         </button>
 
-        <button
-          className="menu-btn"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? "✕" : "☰"}
-        </button>
+<button
+  className="menu-btn"
+  onClick={() => setMenuOpen(!menuOpen)}
+>
+  <span className={menuOpen ? "menu-icon close" : "menu-icon"}>
+    {menuOpen ? "✕" : "☰"}
+  </span>
+</button>
 
       </div>
 

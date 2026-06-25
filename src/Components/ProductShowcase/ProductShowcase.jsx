@@ -8,7 +8,8 @@ function ProductShowcase() {
       <div className="showcase-header">
         <h2>Latest Drops</h2>
 
-        <Link to="/shop" className="showcase-link">
+        {/* FIXED: match your router if you ever create /shop later */}
+        <Link to="/limited" className="showcase-link">
           View All <span>→</span>
         </Link>
       </div>
@@ -17,7 +18,7 @@ function ProductShowcase() {
         {products.map((product) => (
           <Link
             key={product.id}
-            to={`/product/${product.id}`}
+            to={`/products/${product.id}`}   // ✅ FIXED HERE
             className="product-card"
           >
             <div className="product-image">

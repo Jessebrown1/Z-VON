@@ -5,15 +5,23 @@ import "./ProductGallery.css";
 
 import RelatedProducts from "../RelatedProducts/RelatedProducts";
 import { products } from "../../Components/products";
+import { getProductStatus } from "../../Components/productUtils";
+
+
+
 
 export default function ProductGallery() {
   const { id } = useParams();
 
   const product = products.find((p) => String(p.id) === String(id));
+  const has3D = product.is3D === true;
+  const [openShipping, setOpenShipping] = useState(false);
 
+  const [openSizeGuide, setOpenSizeGuide] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState("M");
   const [openModal, setOpenModal] = useState(false);
+  const [open3DModal, setOpen3DModal] = useState(false);
 
   if (!product) {
     return (
@@ -24,8 +32,11 @@ export default function ProductGallery() {
     );
   }
 
-  const isSoldOut = product.stock === 0;
-  const isLimited = product.limitedEdition === true;
+const status = product ? getProductStatus(product) : null;
+
+const isSoldOut = status?.isSoldOut;
+const isLowStock = status?.isLowStock;
+const isLimited = product?.limitedEdition === true;
 
   return (
     <>
@@ -104,7 +115,21 @@ export default function ProductGallery() {
 
         {/* RIGHT */}
         <div className="purchase-column">
-          <h2>{product.price}</h2>
+         <h2>{product.price}</h2>
+
+{isLowStock && (
+  <div className="stock-warning">
+    Only {product.stock} left — hurry!
+  </div>
+)}
+
+{isSoldOut && (
+  <div className="stock-sold">
+    Sold Out
+  </div>
+)}
+
+          
 
           <p className="product-subtitle">
             {isSoldOut
@@ -139,12 +164,34 @@ export default function ProductGallery() {
             })}
           </div>
 
-          <button
-            className={`cart-btn ${isSoldOut ? "soldout" : ""}`}
-            disabled={isSoldOut}
-          >
-            {isSoldOut ? "Sold Out" : "Add To Cart"}
-          </button>
+<button
+  className={`cart-btn ${isSoldOut ? "soldout" : ""}`}
+  disabled={isSoldOut}
+>
+  {isSoldOut ? "Sold Out" : "Add To Cart"}
+</button>
+
+{/* Size Guide */}
+<div className="product-utils">
+  <button onClick={() => setOpenSizeGuide(true)}>
+  📏 Size Guide
+</button>
+
+  <button onClick={() => setOpenShipping(true)}>
+  🚚 Shipping & Returns
+</button>
+</div>
+
+
+{/* 3D Viewer */}
+{has3D && (
+  <button
+    className="view-3d-btn"
+    onClick={() => setOpen3DModal(true)}
+  >
+    View In 3D
+  </button>
+)}
         </div>
 
         {/* MOBILE */}
@@ -236,6 +283,181 @@ export default function ProductGallery() {
           </motion.div>
         )}
       </AnimatePresence>
+
+
+
+              <AnimatePresence>
+  {openSizeGuide && (
+    <motion.div
+      className="size-guide-modal"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={() => setOpenSizeGuide(false)}
+    >
+      <motion.div
+        className="size-guide-content"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          className="size-guide-close"
+          onClick={() => setOpenSizeGuide(false)}
+        >
+          ✕
+        </button>
+
+        <h2>Size Guide</h2>
+
+        <table className="size-table">
+          <thead>
+            <tr>
+              <th>Size</th>
+              <th>Chest</th>
+              <th>Length</th>
+              <th>Shoulder</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>S</td>
+              <td>96 cm</td>
+              <td>68 cm</td>
+              <td>43 cm</td>
+            </tr>
+
+            <tr>
+              <td>M</td>
+              <td>102 cm</td>
+              <td>71 cm</td>
+              <td>45 cm</td>
+            </tr>
+
+            <tr>
+              <td>L</td>
+              <td>108 cm</td>
+              <td>74 cm</td>
+              <td>47 cm</td>
+            </tr>
+
+            <tr>
+              <td>XL</td>
+              <td>114 cm</td>
+              <td>77 cm</td>
+              <td>49 cm</td>
+            </tr>
+
+            <tr>
+              <td>XXL</td>
+              <td>120 cm</td>
+              <td>80 cm</td>
+              <td>51 cm</td>
+            </tr>
+          </tbody>
+        </table>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
+
+
+<AnimatePresence>
+  {open3DModal && (
+    <motion.div
+      className="coming-soon-modal"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={() => setOpen3DModal(false)}
+    >
+      <motion.div
+        className="coming-soon-content"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          className="coming-soon-close"
+          onClick={() => setOpen3DModal(false)}
+        >
+          ✕
+        </button>
+
+        <h2>Coming Soon</h2>
+
+        <p>
+          Our interactive 3D product viewer is currently in development.
+        </p>
+
+        <p>
+          Soon you'll be able to rotate, zoom, and inspect every detail of this garment.
+        </p>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
+
+
+<AnimatePresence>
+  {openShipping && (
+    <motion.div
+      className="size-guide-modal"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={() => setOpenShipping(false)}
+    >
+      <motion.div
+        className="size-guide-content"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          className="size-guide-close"
+          onClick={() => setOpenShipping(false)}
+        >
+          ✕
+        </button>
+
+        <h2>Shipping & Returns</h2>
+
+        <div className="policy-text">
+          <p>
+            We process all orders within <strong>1–3 business days</strong>.
+            Delivery times vary depending on your location but typically range
+            from <strong>3–7 business days</strong> for domestic orders.
+          </p>
+
+          <p>
+            Once your order is shipped, you will receive a tracking number via
+            email or SMS.
+          </p>
+
+          <p>
+            We offer a <strong>14-day return policy</strong> for unworn and
+            unused items in their original condition. Refunds or exchanges are
+            processed once the item is inspected.
+          </p>
+
+          <p>
+            Please note that sale or limited-edition items may not be eligible
+            for returns.
+          </p>
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
+
 
       <RelatedProducts currentId={id} />
     </>

@@ -1,0 +1,155 @@
+.limited-page {
+  width: 100%;
+  padding: calc(80px + 2.5vw) clamp(12px, 2vw, 24px) 40px;
+  background: #f7f4ef;
+}
+
+/* ================= TITLE ================= */
+.limited-title {
+  margin: 0 0 clamp(18px, 2.5vw, 32px);
+  text-align: center;
+
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+
+  color: #3b2f22;
+
+  position: relative;
+}
+
+/* subtle underline luxury accent */
+.limited-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: #c2a878;
+  margin: 10px auto 0;
+  opacity: 0.7;
+}
+
+/* ================= GRID (5 COLUMNS DESKTOP) ================= */
+.limited-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+
+  max-width: 1600px;
+  margin: 0 auto;
+
+  justify-content: center;
+  align-items: start;
+  min-height: 200px;
+}
+
+/* ================= CARD ================= */
+.limited-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* ================= IMAGE ================= */
+.limited-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1.25;
+
+  object-fit: cover;
+  border-radius: 10px;
+
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+/* hover zoom */
+.limited-card:hover img {
+  transform: scale(1.06);
+}
+
+/* ================= INFO ================= */
+.limited-info {
+  padding-top: 10px;
+  text-align: left;
+}
+
+.limited-info h3 {
+  margin: 0 0 6px;
+
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(0.8rem, 1vw, 0.95rem);
+  font-weight: 500;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: #1f1a14;
+}
+
+.limited-info p {
+  margin: 0;
+
+  font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+  color: #6b6257;
+}
+
+/* ================= SOLD OUT ================= */
+.limited-card.sold {
+  position: relative;
+  opacity: 0.35;
+  filter: grayscale(100%);
+  cursor: not-allowed;
+}
+
+/* SOLD OUT LABEL OVERLAY */
+.limited-card.sold::after {
+  content: "SOLD OUT";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+
+  color: #fff;
+  background: rgba(0, 0, 0, 0.65);
+
+  padding: 8px 14px;
+  border-radius: 999px;
+
+  text-transform: uppercase;
+
+  z-index: 2;
+}
+.limited-card.sold img {
+  filter: grayscale(100%) brightness(0.85);
+  transform: scale(1);
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 1024px) {
+  .limited-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .limited-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 420px) {
+  .limited-grid {
+    grid-template-columns: 1fr;
+  }
+}

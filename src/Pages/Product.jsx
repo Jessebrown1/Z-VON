@@ -1,11 +1,18 @@
-    import Navbar from "../Components/Navbar/Navbar";
-    import ProductGallery from "../Components/ProductGallery/ProductGallery";
+import { motion } from "framer-motion";
 
-    export default function Product() {
-    return (
-        <>
-        <Navbar />
-        <ProductGallery />
-        </>
-    );
-    }
+import Navbar from "../Components/Navbar/Navbar";
+import ProductGallery from "../Components/ProductGallery/ProductGallery";
+
+export default function Product() {
+  return (
+    <motion.main
+      initial={{ opacity: 0, x: 25 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -25 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
+    >
+      <Navbar />
+      <ProductGallery />
+    </motion.main>
+  );
+}

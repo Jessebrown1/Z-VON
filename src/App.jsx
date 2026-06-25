@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
 
 import Home from "./Pages/Home";
 import Product from "./Pages/Product";
+import LimitedPage from "./Pages/LimitedPage/LimitedPage";
 
-/* ================= SCROLL RESET COMPONENT ================= */
+/* ================= SCROLL TO TOP ================= */
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -15,17 +17,34 @@ function ScrollToTop() {
   return null;
 }
 
-function App() {
-  return (
-    <BrowserRouter>
-      <ScrollToTop />
+/* ================= ROUTES WITH ANIMATION ================= */
+function AppRoutes() {
+  const location = useLocation();
 
-      <Routes>
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+
+        {/* HOME */}
         <Route path="/" element={<Home />} />
-        <Route path="/product/:id" element={<Product />} />
+
+        {/* PRODUCT PAGE (FIXED CONSISTENCY) */}
+        <Route path="/products/:id" element={<Product />} />
+
+        {/* LIMITED PAGE */}
+        <Route path="/limited" element={<LimitedPage />} />
+
       </Routes>
-    </BrowserRouter>
+    </AnimatePresence>
   );
 }
 
-export default App;
+/* ================= APP ================= */
+export default function App() {
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <AppRoutes />
+    </BrowserRouter>
+  );
+}
