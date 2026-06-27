@@ -7,6 +7,8 @@ import RelatedProducts from "../RelatedProducts/RelatedProducts";
 import { products } from "../../Components/products";
 import { getProductStatus } from "../../Components/productUtils";
 
+import Product3DViewer from "../../Components/ProductViewer3D/ProductViewer3D";
+
 
 
 
@@ -14,7 +16,10 @@ export default function ProductGallery() {
   const { id } = useParams();
 
   const product = products.find((p) => String(p.id) === String(id));
-  const has3D = product.is3D === true;
+const has3D =
+  product?.model3D &&
+  product.model3D !== "" &&
+  product.model3D.includes(".glb");
   const [openShipping, setOpenShipping] = useState(false);
 
   const [openSizeGuide, setOpenSizeGuide] = useState(false);
@@ -184,14 +189,22 @@ const isLimited = product?.limitedEdition === true;
 
 
 {/* 3D Viewer */}
-{has3D && (
-  <button
-    className="view-3d-btn"
-    onClick={() => setOpen3DModal(true)}
-  >
-    View In 3D
-  </button>
-)}
+<button
+  className={`view-3d-btn ${!has3D ? "locked" : ""}`}
+  disabled={!has3D}
+  onClick={() => {
+    if (!has3D) return;
+    setOpen3DModal(true);
+  }}
+>
+  <span className="btn-icon">
+    {has3D ? "🧊" : "🔒"}
+  </span>
+
+  <span className="btn-text">
+    {has3D ? "View in 3D" : "Locked • Coming Soon"}
+  </span>
+</button>
         </div>
 
         {/* MOBILE */}
@@ -364,39 +377,45 @@ const isLimited = product?.limitedEdition === true;
 </AnimatePresence>
 
 
-
 <AnimatePresence>
   {open3DModal && (
-    <motion.div
+     <motion.div
       className="coming-soon-modal"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      onClick={() => setOpen3DModal(false)}
     >
       <motion.div
         className="coming-soon-content"
-        initial={{ scale: 0.9, opacity: 0 }}
+        initial={{ scale: 0.92, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
+        exit={{ scale: 0.92, opacity: 0 }}
+        transition={{ duration: 0.35 }}
         onClick={(e) => e.stopPropagation()}
+        style={{
+          width: "90vw",
+          maxWidth: "1200px",
+          height: "85vh",
+          padding: "0",
+          overflow: "hidden",
+          borderRadius: "24px",
+        }}
       >
         <button
-          className="coming-soon-close"
-          onClick={() => setOpen3DModal(false)}
-        >
-          ✕
-        </button>
+  className="coming-soon-close"
+  onClick={() => {
+    setOpen3DModal(false);
+  }}
+>
+  ✕
+</button>
 
-        <h2>Coming Soon</h2>
-
-        <p>
-          Our interactive 3D product viewer is currently in development.
-        </p>
-
-        <p>
-          Soon you'll be able to rotate, zoom, and inspect every detail of this garment.
-        </p>
+        {open3DModal && (
+  <Product3DViewer
+    modelUrl={`/models/${product.id}.glb`}
+    onClose={() => setOpen3DModal(false)}
+  />
+)}
       </motion.div>
     </motion.div>
   )}

@@ -19,6 +19,8 @@ import lav1 from "../assets/lav1.png";
 import lav2 from "../assets/lav2.png";
 import lav3 from "../assets/lav3.png";
 
+import des1 from "../assets/des1.png"
+import des2 from "../assets/des2.png"
 
 /* ================= PRODUCTS ================= */
 
@@ -30,11 +32,14 @@ export const products = [
       subtitle: "Heavyweight Edition",
     },
     price: "₵200.00",
-    image: [knit1,knit4, knit2, knit3],
+    image: [knit1, knit4, knit2, knit3],
+
     stock: 12,
     isLowStock: false,
     limitedEdition: false,
-    is3D: true,
+
+    // 3D MODEL
+      model3D: null,
 
     sizes: {
       S: true,
@@ -61,10 +66,13 @@ export const products = [
     },
     price: "₵250.00",
     image: [hoodie1, hoodie2],
+
     stock: 1,
     isLowStock: true,
     limitedEdition: false,
-    is3D: true,
+
+    // Coming Soon
+    model3D: null,
 
     sizes: {
       S: true,
@@ -91,9 +99,12 @@ export const products = [
     },
     price: "₵100",
     image: [over1, over2, over3, over4],
+
     stock: 8,
     limitedEdition: false,
-    is3D: true,
+
+    // 3D MODEL
+    model3D: null,
 
     sizes: {
       S: true,
@@ -120,10 +131,13 @@ export const products = [
     },
     price: "₵300.00",
     image: [car3, car1, car2],
+
     stock: 11,
     isLowStock: false,
     limitedEdition: true,
-    is3D: true,
+
+    // 3D MODEL
+    model3D: null,
 
     sizes: {
       S: false,
@@ -150,10 +164,13 @@ export const products = [
     },
     price: "₵100.00",
     image: [lav1, lav2, lav3],
+
     stock: 0,
     isLowStock: true,
     limitedEdition: true,
-    is3D: true,
+
+    // Coming Soon
+    model3D: null,
 
     sizes: {
       S: true,
@@ -171,4 +188,39 @@ export const products = [
         "Double-layer hood with ribbed cuffs and reinforced stitching throughout.",
     },
   },
+
+
+  {
+  id: 6,
+  title: {
+    main: "ZÉVON Worldwide Collection Tee",
+    subtitle: "Premium Streetwear",
+  },
+  price: "₵100.00",
+  image: [des1,des2],
+  stock: 4,
+  isLowStock: true,
+  limitedEdition: true,
+  model3D: "/models/knit-polo.glb",
+
+  sizes: {
+    S: true,
+    M: true,
+    L: false,
+    XL: true,
+  },
+
+  description: {
+    description:
+      "A premium, heavy cotton tee featuring intricate, classical 'ZÉVON' iconography. The front displays a detailed winged angel sculpture set within a circular frame with coordinates and branding, while the back showcases the 'ZV' monogram globe and 'WORLDWIDE COLLECTION' details, all rendered in a sophisticated cream print.",
+    fit:
+      "Oversized drop-shoulder silhouette designed for relaxed streetwear fit.",
+    construction:
+      "Reinforced crew neck, double-stitched sleeves, and high-quality cream screen printing.",
+  },
+},
+
+
+
+
 ];

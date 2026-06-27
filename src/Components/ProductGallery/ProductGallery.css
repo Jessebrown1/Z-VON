@@ -843,3 +843,9 @@
   font-weight: 600;
   letter-spacing: 1px;
 }
+
+.view-3d-btn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none; /* CRITICAL */
+}
