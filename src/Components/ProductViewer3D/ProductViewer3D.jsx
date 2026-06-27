@@ -2,6 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import {
   OrbitControls,
   useGLTF,
+  useAnimations,
   Environment,
   ContactShadows,
   useProgress,
@@ -36,36 +37,47 @@ function Loader() {
 }
 
 /* =========================
-   MODEL (NO JUMP FIXED)
+   MODEL (FIXED + ANIMATION + NO JUMPING)
 ========================= */
 function Model({ url }) {
-  const { scene } = useGLTF(url);
+  const group = useRef();
 
-  const fixedScene = useMemo(() => {
+  const { scene, animations } = useGLTF(url);
+  const { actions, mixer } = useAnimations(animations, group);
+
+  // center model properly (safe version)
+  const centeredScene = useMemo(() => {
     const clone = scene.clone(true);
 
     const box = new THREE.Box3().setFromObject(clone);
     const center = box.getCenter(new THREE.Vector3());
-    const size = box.getSize(new THREE.Vector3());
 
-    // 1. CENTER IT PROPERLY
-    clone.position.x -= center.x;
-    clone.position.y -= center.y;
-    clone.position.z -= center.z;
-
-    // 2. FIX SCALE USING CAMERA-FRIENDLY NORMALIZATION
-    const maxDim = Math.max(size.x, size.y, size.z);
-
-    // 👇 consistent real-world fit scale (this is the key fix)
-    const scale = 2.5 / maxDim;
-
-    clone.scale.setScalar(scale);
+    clone.position.sub(center);
 
     return clone;
   }, [scene]);
 
-  return <primitive object={fixedScene} />;
+  useEffect(() => {
+    if (!actions) return;
+
+    const firstAnimation = Object.values(actions)[0];
+
+    if (firstAnimation) {
+      firstAnimation.reset().fadeIn(0.3).play();
+    }
+
+    return () => {
+      mixer?.stopAllAction();
+    };
+  }, [actions, mixer]);
+
+  return (
+    <group ref={group}>
+      <primitive object={centeredScene} />
+    </group>
+  );
 }
+
 
 /* =========================
    VIEWER
@@ -102,7 +114,7 @@ export default function Product3DViewer({ modelUrl, onClose }) {
     );
   }, []);
 
-  /* CLOSE HANDLER (NO BUGS) */
+  /* CLOSE HANDLER */
   const handleClose = () => {
     if (closingRef.current) return;
     closingRef.current = true;
@@ -154,8 +166,7 @@ export default function Product3DViewer({ modelUrl, onClose }) {
             fov: isMobile ? 55 : 40,
           }}
         >
-          {/* IMPORTANT: NO BACKGROUND INSIDE CANVAS */}
-          <color attach="background" args={["#ffffff"]} />
+          <color attach="background" args={["transparent"]} />
 
           <ambientLight intensity={0.9} />
           <directionalLight position={[5, 5, 5]} intensity={2} />
@@ -193,5 +204,5 @@ export default function Product3DViewer({ modelUrl, onClose }) {
   );
 }
 
-/* OPTIONAL PRELOAD */
+/* optional preload (important for speed) */
 useGLTF.preload("/models/model.glb");

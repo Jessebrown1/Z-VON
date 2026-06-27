@@ -202,7 +202,7 @@ const isLimited = product?.limitedEdition === true;
   </span>
 
   <span className="btn-text">
-    {has3D ? "View in 3D" : "Locked • Coming Soon"}
+    {has3D ? "View in 3D" : "3D Locked • Coming Soon"}
   </span>
 </button>
         </div>
