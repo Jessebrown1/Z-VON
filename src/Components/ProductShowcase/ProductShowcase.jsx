@@ -9,7 +9,7 @@ function ProductShowcase() {
         <h2>Latest Drops</h2>
 
         {/* FIXED: match your router if you ever create /shop later */}
-        <Link to="/limited" className="showcase-link">
+        <Link to="/collections" className="showcase-link">
           View All <span>→</span>
         </Link>
       </div>

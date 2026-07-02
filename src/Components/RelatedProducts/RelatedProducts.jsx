@@ -1,16 +1,36 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { products } from "../../Components/products";
 import "./RelatedProducts.css";
 
+// Fisher-Yates shuffle
+function shuffleArray(array) {
+  const shuffled = [...array];
+
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  return shuffled;
+}
+
 export default function RelatedProducts({ currentId }) {
   const containerRef = useRef(null);
 
-  const relatedBase = products.filter(
-    (p) => p.id !== Number(currentId)
-  );
+  // Shuffle only when the current product changes
+  const relatedBase = useMemo(() => {
+    return shuffleArray(
+      products.filter((p) => p.id !== Number(currentId))
+    );
+  }, [currentId]);
 
   const [visibleCount, setVisibleCount] = useState(4);
+
+  // Reset visible count when changing products
+  useEffect(() => {
+    setVisibleCount(4);
+  }, [currentId]);
 
   const visibleProducts = relatedBase.slice(0, visibleCount);
 
@@ -36,7 +56,7 @@ export default function RelatedProducts({ currentId }) {
     return () => {
       if (el) el.removeEventListener("scroll", handleScroll);
     };
-  }, [relatedBase.length]);
+  }, [relatedBase]);
 
   return (
     <section className="related" ref={containerRef}>
@@ -45,14 +65,12 @@ export default function RelatedProducts({ currentId }) {
       <div className="related-grid">
         {visibleProducts.map((p) => (
           <Link key={p.id} to={`/products/${p.id}`} className="related-card">
-
             <img src={p.image[0]} alt={p.title?.main} />
 
             <div>
               <h3>{p.title?.main}</h3>
               <p>{p.price}</p>
             </div>
-
           </Link>
         ))}
       </div>

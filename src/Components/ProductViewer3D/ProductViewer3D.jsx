@@ -44,6 +44,7 @@ function Model({ url }) {
 
   const { scene, animations } = useGLTF(url);
   const { actions, mixer } = useAnimations(animations, group);
+  
 
   // center model properly (safe version)
   const centeredScene = useMemo(() => {
@@ -190,8 +191,6 @@ export default function Product3DViewer({ modelUrl, onClose }) {
             enablePan={false}
             enableZoom={true}
             enableRotate={true}
-            autoRotate
-            autoRotateSpeed={0.4}
             minDistance={2}
             maxDistance={isMobile ? 10 : 12}
             target={[0, 0, 0]}

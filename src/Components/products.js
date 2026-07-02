@@ -22,6 +22,14 @@ import lav3 from "../assets/lav3.png";
 import des1 from "../assets/des1.png"
 import des2 from "../assets/des2.png"
 
+
+import Omini1 from "../assets/Omini1.jpg"
+import Omini2 from "../assets/Omini2.jpg"
+import Omini3 from "../assets/Omini3.jpg"
+import Omini4 from "../assets/Omini4.jpg"
+
+
+
 /* ================= PRODUCTS ================= */
 
 export const products = [
@@ -201,6 +209,41 @@ export const products = [
   stock: 4,
   isLowStock: true,
   limitedEdition: true,
+  model3D: "/models/knit-polo.glb",
+
+  sizes: {
+    S: true,
+    M: true,
+    L: false,
+    XL: true,
+  },
+
+  description: {
+    description:
+      "A premium, heavy cotton tee featuring intricate, classical 'ZÉVON' iconography. The front displays a detailed winged angel sculpture set within a circular frame with coordinates and branding, while the back showcases the 'ZV' monogram globe and 'WORLDWIDE COLLECTION' details, all rendered in a sophisticated cream print.",
+    fit:
+      "Oversized drop-shoulder silhouette designed for relaxed streetwear fit.",
+    construction:
+      "Reinforced crew neck, double-stitched sleeves, and high-quality cream screen printing.",
+  },
+},
+
+
+
+
+
+
+  {
+  id: 7,
+  title: {
+    main: "ZÉVON Worldwide Collection Tee",
+    subtitle: "Premium Streetwear",
+  },
+  price: "₵150.00",
+  image: [Omini2,Omini1,Omini3,Omini4],
+  stock: 4,
+  isLowStock: true,
+  limitedEdition: false,
   model3D: "/models/knit-polo.glb",
 
   sizes: {

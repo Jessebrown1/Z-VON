@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import { products } from "../../Components/products";
 import "./LimitedDrop.css";
 
-/* set a FIXED end time (24h from first load) */
+/* FIXED 24H DROP TIMER */
 const DROP_END_TIME =
   new Date().getTime() + 24 * 60 * 60 * 1000;
 
 export default function LimitedDrop() {
-  const limitedProducts = products.filter(
-    (p) => p.limitedEdition === true
-  );
+
+  const limitedProducts = products
+    .filter((p) => p.limitedEdition === true)
+    .slice(0, 3); // ✅ ONLY SHOW 3 PRODUCTS
 
   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
 
@@ -39,7 +40,6 @@ export default function LimitedDrop() {
     <section className="limited-section">
 
       <div className="limited-header">
-
         <h2>LIMITED EDITION DROP</h2>
 
         <div className="timer">
@@ -51,12 +51,13 @@ export default function LimitedDrop() {
           </span>
         </div>
 
+        {/* ✅ LINK TO FULL PAGE */}
         <Link to="/limited" className="see-more-link">
           SEE MORE →
         </Link>
-
       </div>
 
+      {/* GRID (ONLY 2–3 ITEMS) */}
       <div className="limited-grid">
         {limitedProducts.map((p) => (
           <div

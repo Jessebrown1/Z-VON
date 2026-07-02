@@ -82,7 +82,9 @@ function Header() {
       <div className="header__content">
         <h1 ref={titleRef}>{slides[current].title}</h1>
         <p ref={textRef}>{slides[current].text}</p>
-        <button>SHOP NOW</button>
+        <button onClick={() => (window.location.href = "/collections")}>
+  SHOP NOW
+</button>
       </div>
 
       {/* IMAGES */}

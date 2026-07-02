@@ -1,77 +1,174 @@
 .le-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(6px);
+
+  background: white;
+  backdrop-filter: blur(12px);
+
   z-index: 1000;
+
   display: flex;
   justify-content: flex-end;
+
+  animation: overlayFade 0.25s ease forwards;
 }
 
+@keyframes overlayFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ================= PANEL ================= */
 .le-panel {
   width: 420px;
   height: 100%;
-  background: #fff;
+
+  background: #ffffff;
 
   display: flex;
   flex-direction: column;
 
-  box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+
+  box-shadow: -30px 0 80px rgba(0, 0, 0, 0.08);
+
+  transform: translateX(100%);
+  animation: panelIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+@keyframes panelIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ================= HEADER ================= */
 .le-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: 20px;
-  border-bottom: 1px solid #eee;
+  padding: 22px;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+  backdrop-filter: blur(6px);
 }
 
 .le-header h2 {
-  font-size: 1.2rem;
+  font-size: 12px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #111;
 }
 
+/* ================= LIST ================= */
 .le-list {
-  padding: 15px;
+  padding: 18px;
   overflow-y: auto;
 
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
+/* ================= CARD ================= */
 .le-card {
   display: flex;
-  gap: 12px;
+  gap: 14px;
 
-  padding: 10px;
-  border: 1px solid #eee;
-  border-radius: 12px;
+  padding: 12px;
+
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 14px;
 
   cursor: pointer;
 
-  transition: 0.2s ease;
+  background: #fff;
+
+  transition: all 0.35s ease;
+
+  position: relative;
+  overflow: hidden;
 }
 
 .le-card:hover {
-  transform: translateY(-2px);
-  border-color: #111;
+  transform: translateY(-5px);
+  border-color: rgba(0, 0, 0, 0.18);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
 }
 
+/* hover sheen */
+.le-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0, 0, 0, 0.04),
+    transparent
+  );
+  transition: 0.6s;
+}
+
+.le-card:hover::after {
+  left: 120%;
+}
+
+/* ================= IMAGE ================= */
 .le-card img {
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
+
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  transition: transform 0.4s ease;
+}
+
+.le-card:hover img {
+  transform: scale(1.05);
+}
+
+/* ================= INFO ================= */
+.le-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
 }
 
 .le-info p {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #111;
 }
 
 .le-info span {
-  font-size: 0.8rem;
+  font-size: 11px;
   color: #666;
+  letter-spacing: 0.3px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .le-panel {
+    width: 100%;
+    border-left: none;
+  }
 }
