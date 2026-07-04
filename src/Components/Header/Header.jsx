@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import "./Header.css";
-
+import { Link } from "react-router-dom";
 import zevon1 from "../../assets/zevon1.jpg";
 import zevon2 from "../../assets/zevon2.jpg";
 import zevon3 from "../../assets/zevon3.jpg";
@@ -82,9 +82,9 @@ function Header() {
       <div className="header__content">
         <h1 ref={titleRef}>{slides[current].title}</h1>
         <p ref={textRef}>{slides[current].text}</p>
-        <button onClick={() => (window.location.href = "/collections")}>
-  SHOP NOW
-</button>
+        <Link to="/collections">
+  <button>SHOP NOW</button>
+</Link>
       </div>
 
       {/* IMAGES */}

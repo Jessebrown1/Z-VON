@@ -1,217 +1,221 @@
-/* ================= SECTION ================= */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap');
+
+/* =========================
+   DISCOVER COLLECTIONS
+========================= */
+
 .discover {
   width: 100%;
-  padding: 40px 0;
-  background: radial-gradient(circle at top, #2c2c28, #1a1a18);
-  overflow: hidden;
+  padding: 110px 2%;
+  margin-top: -113px;
+  background: #ffffff;
+  font-family: "Inter", system-ui, sans-serif;
 }
 
-/* ================= HEADER ================= */
+/* =========================
+   HEADER
+========================= */
 
-.discover-header {
-  max-width: 1200px;
-  margin: 0 auto 12px;
-  padding: 0 16px;
+.discover-top {
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  margin-bottom: 50px;
 }
 
-.discover-header h2 {
+.discover-top h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #111;
   margin: 0;
-  font-size: 0.8rem;
-  letter-spacing: 3px;
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 500;
-  text-transform: uppercase;
 }
 
-/* ================= SLIDER ================= */
+.discover-top p {
+  color: #777;
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+  line-height: 1.8;
 
-.slider-container {
-  max-width: 1200px;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 0 16px;
 }
 
-/* ================= CARD ================= */
+/* =========================
+   GRID (DESKTOP DEFAULT)
+========================= */
 
-.slider-card {
-  position: relative;
-  display: block;
+.discover-slider {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 26px;
   width: 100%;
-  height: clamp(260px, 45vw, 380px);
-  border-radius: 20px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.discover-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 5;
+
+  border-radius: 16px;
   overflow: hidden;
+
   text-decoration: none;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  background: #f7f7f7;
+
+  transition: transform 0.3s ease;
 }
 
-/* ================= IMAGE LAYER ================= */
-
-.image-layer {
-  position: absolute;
-  inset: 0;
+.discover-card:hover {
+  transform: translateY(-6px);
 }
 
-.bg-image {
-  position: absolute;
-  inset: 0;
-
-  background-size: cover;
-  background-position: center;
-
-  transition:
-    opacity 1.4s ease,
-    filter 1.4s ease,
-    transform 7s ease;
+.discover-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
-.bg-image.active {
-  opacity: 1;
-  filter: blur(0);
-  z-index: 2;
+.discover-card:hover img {
   transform: scale(1.04);
 }
 
-.bg-image.old {
-  opacity: 0;
-  filter: blur(18px);
-  z-index: 1;
-  transform: scale(1.08);
-}
-
-.slider-card:hover .bg-image.active {
-  transform: scale(1.08);
-}
-
-/* ================= OVERLAY ================= */
+/* =========================
+   OVERLAY
+========================= */
 
 .overlay {
   position: absolute;
   inset: 0;
-  z-index: 3;
-  background: transparent;
-  pointer-events: none;
-}
-
-/* ================= CONTENT ================= */
-
-.card-content {
-  position: absolute;
-  left: 24px;
-  bottom: 24px;
-  z-index: 10;
 
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: flex-end;
 
-  max-width: 420px;
-  color: #fff;
+  padding: 24px;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.25) 55%,
+    transparent 100%
+  );
+
+  color: white;
 }
 
-.card-content h3 {
-  margin: 0 0 8px;
-  font-size: clamp(2rem, 5vw, 4rem);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  font-weight: 700;
-  text-transform: uppercase;
-
-  animation: fadeUp 0.8s ease;
-}
-
-.card-content p {
-  margin: 0 0 16px;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.88);
-
-  animation: fadeUp 1s ease;
-}
-
-/* ================= BUTTON ================= */
-
-.card-content button {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 10px;
-
-  cursor: pointer;
-
-  background: linear-gradient(135deg, #d7b98e, #b08a5a);
-
-  color: #111;
-  font-size: 0.9rem;
+.overlay span {
+  font-size: 1.3rem;
   font-weight: 600;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  transition: transform 0.3s ease;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
 }
 
-.card-content button:hover {
-  transform: translateY(-2px);
+.overlay p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 14px;
 }
 
-.card-content button span {
-  transition: transform 0.3s ease;
+.explore {
+  width: fit-content;
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+  padding-bottom: 3px;
+
+  transition: opacity 0.2s ease;
 }
 
-.card-content button:hover span {
-  transform: translateX(5px);
+.discover-card:hover .explore {
+  opacity: 0.7;
 }
 
-/* ================= ANIMATION ================= */
+/* =========================
+   LARGE TABLET (3 COL)
+========================= */
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .discover {
-    padding: 24px 0;
+    padding: 100px 4%;
   }
 
-  .discover-header,
-  .slider-container {
-    padding: 0 12px;
+  .discover-slider {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+}
+
+/* =========================
+   TABLET (2 COL)
+========================= */
+
+@media (max-width: 900px) {
+  .discover-slider {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
+/* =========================
+   MOBILE (1 COL)
+========================= */
+
+@media (max-width: 600px) {
+  .discover {
+    padding: 70px 16px;
   }
 
-  .slider-card {
-    height: 260px;
-    border-radius: 16px;
+  .discover-top {
+    margin-bottom: 35px;
   }
 
-  .card-content {
-    left: 16px;
-    bottom: 16px;
-    max-width: 220px;
+  .discover-top h2 {
+    font-size: 2rem;
   }
 
-  .card-content h3 {
-    font-size: 1.6rem;
-    margin-bottom: 6px;
+  .discover-top p {
+    font-size: 0.9rem;
   }
 
-  .card-content p {
-    margin-bottom: 12px;
+  .discover-slider {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .overlay {
+    padding: 18px;
+  }
+
+  .overlay span {
+    font-size: 1.15rem;
+  }
+
+  .overlay p {
     font-size: 0.85rem;
-    line-height: 1.4;
   }
+}
 
-  .card-content button {
-    padding: 10px 16px;
-    font-size: 0.8rem;
+/* =========================
+   ULTRA LARGE SCREENS
+========================= */
+
+@media (min-width: 1600px) {
+  .discover-slider {
+    max-width: 1400px;
+    margin: 0 auto;
   }
 }

@@ -1,104 +1,59 @@
-import "./DiscoverCollections.css";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-
-import mensImg from "../../assets/mens.png";
-import womensImg from "../../assets/womens.png";
-import animeBanner from "../../assets/animeBanner.jpg";
+import "./DiscoverCollections.css";
 
 const collections = [
   {
-    title: "MEN'S WEAR",
-    subtitle: "Built for everyday dominance",
-    button: "Explore Men",
-    image: mensImg,
-    link: "/products/mens-wear",
+    title: "Hoodie",
+    desc: "Oversized comfort crafted for everyday luxury.",
+    image:
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=900&q=80",
+    link: "/collections?category=hoodie",
   },
   {
-    title: "WOMEN'S WEAR",
-    subtitle: "Elegance meets street power",
-    button: "Explore Women",
-    image: womensImg,
-    link: "/products/womens-wear",
+    title: "Tee",
+    desc: "Minimal essentials with a premium streetwear edge.",
+    image:
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=900&q=80",
+    link: "/collections?category=tee",
   },
   {
-    title: "ANIME COLLECTION",
-    subtitle: "Inspired by iconic worlds",
-    button: "Explore Anime",
-    image: animeBanner,
-    link: "/products/anime-collection",
+    title: "Anime",
+    desc: "Exclusive designs inspired by iconic anime worlds.",
+    image:
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=900&q=80",
+    link: "/collections?category=anime",
+  },
+  {
+    title: "Accessories",
+    desc: "Complete your look with premium finishing touches.",
+    image:
+      "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=900&q=80",
+    link: "/collections?category=accessories",
   },
 ];
 
-function DiscoverCollections() {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  useEffect(() => {
-    if (paused) return;
-
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % collections.length);
-    }, 7000);
-
-    return () => clearInterval(interval);
-  }, [paused]);
-
-  const item = collections[index];
-
+export default function DiscoverCollections() {
   return (
     <section className="discover">
-
-      <div className="discover-header">
-        <h2>DISCOVER THE COLLECTIONS</h2>
+      <div className="discover-top">
+        <h2>Discover Collections</h2>
+        <p>Explore the signature collections from ZÉVON.</p>
       </div>
 
-      <div
-        className="slider-container"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
+      <div className="discover-slider">
+        {collections.map((item, index) => (
+          <Link key={index} to={item.link} className="discover-card">
+            <img src={item.image} alt={item.title} />
 
-        <Link to={item.link} className="slider-card">
+            <div className="overlay">
+              <span>{item.title}</span>
+              <p>{item.desc}</p>
 
-          {/* 🔥 BLUR CROSSFADE LAYER SYSTEM */}
-          <div className="image-layer">
-
-            <div
-              className="bg-image old"
-              style={{
-                backgroundImage: `url(${collections[(index - 1 + collections.length) % collections.length].image})`,
-              }}
-            />
-
-            <div
-              className="bg-image active"
-              style={{
-                backgroundImage: `url(${item.image})`,
-              }}
-            />
-
-          </div>
-
-          <div className="overlay"></div>
-
-          <div className="card-content">
-            <h3 key={item.title}>{item.title}</h3>
-
-            <p key={item.subtitle}>
-              {item.subtitle}
-            </p>
-
-            <button key={item.button}>
-              {item.button} <span>→</span>
-            </button>
-          </div>
-
-        </Link>
-
+              <div className="explore">Explore →</div>
+            </div>
+          </Link>
+        ))}
       </div>
     </section>
   );
 }
-
-export default DiscoverCollections;
