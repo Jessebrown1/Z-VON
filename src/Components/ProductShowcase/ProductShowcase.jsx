@@ -37,7 +37,7 @@ function ProductShowcase() {
                 </p>
               )}
 
-              <p>{product.price}</p>
+              <p>₵{product.price.toFixed(2)}</p>
             </div>
           </Link>
         ))}

@@ -39,7 +39,7 @@ export const products = [
       main: "ZÉVON Knit Polo",
       subtitle: "Heavyweight Edition",
     },
-    price: "₵200.00",
+    price: 200.00,
     image: [knit1, knit4, knit2, knit3],
 
     stock: 12,
@@ -72,7 +72,7 @@ export const products = [
       main: "ZÉVON Black Hoodie",
       subtitle: "Evening Collection",
     },
-    price: "₵250.00",
+    price: 250.00,
     image: [hoodie1, hoodie2],
 
     stock: 1,
@@ -105,7 +105,7 @@ export const products = [
       main: "ZÉVON Oversized Tee",
       subtitle: "Street Essentials",
     },
-    price: "₵100",
+    price: 100,
     image: [over1, over2, over3, over4],
 
     stock: 8,
@@ -137,7 +137,7 @@ export const products = [
       main: "ZÉVON Cargo Pants",
       subtitle: "Utility Drop",
     },
-    price: "₵300.00",
+    price: 300.00,
     image: [car3, car1, car2],
 
     stock: 11,
@@ -170,7 +170,7 @@ export const products = [
       main: "Oversized Tee in Lavender",
       subtitle: "ZÉVON Essentials",
     },
-    price: "₵100.00",
+    price: 100.00,
     image: [lav1, lav2, lav3],
 
     stock: 0,
@@ -204,7 +204,7 @@ export const products = [
     main: "ZÉVON Worldwide Collection Tee",
     subtitle: "Premium Streetwear",
   },
-  price: "₵100.00",
+  price: 100.00,
   image: [des1,des2],
   stock: 4,
   isLowStock: true,
@@ -239,7 +239,7 @@ export const products = [
     main: "ZÉVON Worldwide Collection Tee",
     subtitle: "Premium Streetwear",
   },
-  price: "₵150.00",
+  price: 150.00,
   image: [Omini2,Omini1,Omini3,Omini4],
   stock: 4,
   isLowStock: true,

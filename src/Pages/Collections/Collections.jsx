@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { products } from "../../Components/products";
 import Navbar from "../../Components/Navbar/Navbar";
 import "./Collections.css";
+import { useCart } from "../../Components/Cart/CartContext";
 
 export default function Collections() {
   const [active, setActive] = useState("all");
@@ -10,6 +11,7 @@ export default function Collections() {
   const trackRef = useRef(null);
   const btnRefs = useRef({});
   const [indicatorStyle, setIndicatorStyle] = useState({});
+  const { addToCart } = useCart();
 
   const categorized = products.map((item) => {
     const name = item.title.main.toLowerCase();
@@ -131,7 +133,17 @@ export default function Collections() {
                       Sold Out
                     </button>
                   ) : (
-                    <button>Add to Cart</button>
+                    <button
+  onClick={(e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    addToCart(item, "M");
+    window.openCart?.();
+  }}
+>
+  Add to Cart
+</button>
                   )}
                 </div>
               </Link>

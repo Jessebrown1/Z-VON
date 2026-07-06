@@ -4,8 +4,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import "./ProductGallery.css";
 
 import RelatedProducts from "../RelatedProducts/RelatedProducts";
-import { products } from "../../Components/products";
+import {  products } from "../../Components/products";
 import { getProductStatus } from "../../Components/productUtils";
+import { useCart } from "../../Components/Cart/CartContext";
+
 
 import Product3DViewer from "../../Components/ProductViewer3D/ProductViewer3D";
 
@@ -27,6 +29,8 @@ const has3D =
   const [selectedSize, setSelectedSize] = useState("M");
   const [openModal, setOpenModal] = useState(false);
   const [open3DModal, setOpen3DModal] = useState(false);
+  const { addToCart } = useCart();
+  
 
   if (!product) {
     return (
@@ -71,6 +75,16 @@ const isLimited = product?.limitedEdition === true;
               ? "Limited Edition"
               : "Standard"}
           </span>
+
+
+          {isLimited && (
+  <div className="gift-notice">
+    <span className="gift-dot">🎁</span>
+    <span>
+      Includes a complimentary <strong>Zevon Special Perfume (10ml)</strong>.
+    </span>
+  </div>
+)}
 
           <div className="editorial">
             <AccordionItem
@@ -120,7 +134,9 @@ const isLimited = product?.limitedEdition === true;
 
         {/* RIGHT */}
         <div className="purchase-column">
-         <h2>{product.price}</h2>
+         <h2>₵{product.price.toFixed(2)}</h2>
+
+         
 
 {isLowStock && (
   <div className="stock-warning">
@@ -172,6 +188,14 @@ const isLimited = product?.limitedEdition === true;
 <button
   className={`cart-btn ${isSoldOut ? "soldout" : ""}`}
   disabled={isSoldOut}
+  onClick={() => {
+    if (isSoldOut) return;
+
+    addToCart(product, selectedSize);
+
+    // OPEN CART OVERLAY
+    window.openCart?.();
+  }}
 >
   {isSoldOut ? "Sold Out" : "Add To Cart"}
 </button>
@@ -221,9 +245,20 @@ const isLimited = product?.limitedEdition === true;
             </span>
           </div>
 
-          <button className="mobile-cart-btn" disabled={isSoldOut}>
-            {isSoldOut ? "Sold Out" : "Add To Cart"}
-          </button>
+<button
+  className="mobile-cart-btn"
+  disabled={isSoldOut}
+  onClick={() => {
+    if (isSoldOut) return;
+
+    addToCart(product, selectedSize);
+
+    // OPEN CART OVERLAY
+    window.openCart?.();
+  }}
+>
+  {isSoldOut ? "Sold Out" : "Add To Cart"}
+</button>
         </div>
       </section>
 

@@ -849,3 +849,167 @@
   cursor: not-allowed;
   pointer-events: none; /* CRITICAL */
 }
+
+
+
+
+
+
+/* =========================
+   LIMITED EDITION GIFT
+========================= */
+
+.limited-gift-banner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  margin: 30px 0;
+  padding: 22px;
+
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.08),
+    rgba(255, 255, 255, 0.96)
+  );
+
+  border-radius: 18px;
+}
+
+.gift-icon {
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: #d4af37;
+
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.gift-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.gift-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #9c7a19;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.gift-content h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.gift-content p {
+  margin-top: 8px;
+  line-height: 1.7;
+  color: #555;
+  max-width: 500px;
+}
+
+@media (max-width: 768px) {
+  .limited-gift-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .gift-content p {
+    max-width: 100%;
+  }
+}
+
+
+/* ======================================
+   Complimentary Gift Notice
+====================================== */
+
+.gift-notice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin: 16px 0;
+  padding: 12px 14px;
+
+  background: #fff;
+
+  border: 1px solid rgba(193, 154, 107, 0.35);
+  border-left: 3px solid #C19A6B;
+
+  border-radius: 12px;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+
+  transition: all .3s ease;
+}
+
+.gift-notice:hover {
+  border-color: rgba(193, 154, 107, 0.6);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+.gift-dot {
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #fbf7ef,
+    #f4ead8
+  );
+
+  border: 1px solid rgba(193, 154, 107, 0.35);
+
+  font-size: 16px;
+}
+
+.gift-notice span {
+  color: #555;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.gift-notice strong {
+  color: #111;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .gift-notice {
+    padding: 11px 12px;
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .gift-dot {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .gift-notice span {
+    font-size: 12px;
+  }
+}
