@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 
 /* =========================
    CART CONTEXT
@@ -98,6 +98,9 @@ function cartReducer(state, action) {
 export function CartProvider({ children }) {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
+  // 🎁 Free perfume popup
+  const [giftPopup, setGiftPopup] = useState(false);
+
   /* =========================
      ACTIONS
   ========================= */
@@ -106,6 +109,15 @@ export function CartProvider({ children }) {
       type: "ADD_TO_CART",
       payload: { product, size },
     });
+
+    // Show popup only for Limited Edition products
+    if (product.limitedEdition) {
+      setGiftPopup(true);
+
+      setTimeout(() => {
+        setGiftPopup(false);
+      }, 3000);
+    }
   };
 
   const increaseQuantity = (id, size) => {
@@ -138,6 +150,9 @@ export function CartProvider({ children }) {
     increaseQuantity,
     decreaseQuantity,
     removeFromCart,
+
+    // 🎁 Popup
+    giftPopup,
   };
 
   return (
@@ -148,7 +163,7 @@ export function CartProvider({ children }) {
 }
 
 /* =========================
-   HOOK (FIXED)
+   HOOK
 ========================= */
 export function useCart() {
   const context = useContext(CartContext);

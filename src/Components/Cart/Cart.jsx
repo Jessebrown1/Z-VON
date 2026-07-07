@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import "./Cart.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart({
   open,
@@ -9,6 +10,8 @@ export default function Cart({
   decreaseQuantity,
   removeFromCart,
 }) {
+  const navigate = useNavigate();
+
   // =========================
   // 💰 SUBTOTAL (REAL ITEMS ONLY)
   // =========================
@@ -47,7 +50,9 @@ export default function Cart({
 
   const allItems = [...cartItems, ...giftItems];
 
-  // ✅ SAFE CLOSE HANDLER (FIX)
+  // =========================
+  // SAFE CLOSE HANDLER
+  // =========================
   const handleClose = (e) => {
     if (e) e.stopPropagation();
     onClose?.();
@@ -76,7 +81,7 @@ export default function Cart({
               duration: 0.45,
               ease: [0.22, 1, 0.36, 1],
             }}
-            onClick={(e) => e.stopPropagation()} // prevents overlay click issues
+            onClick={(e) => e.stopPropagation()}
           >
             {/* HEADER */}
             <div className="cart-header">
@@ -182,7 +187,14 @@ export default function Cart({
                 <strong>₵{subtotal.toFixed(2)}</strong>
               </div>
 
-              <button className="checkout-btn">
+              {/* ✅ FIXED CHECKOUT BUTTON */}
+              <button
+                className="checkout-btn"
+                onClick={() => {
+                  onClose?.();     // close drawer first
+                  navigate("/checkout");
+                }}
+              >
                 Secure Checkout
               </button>
             </div>

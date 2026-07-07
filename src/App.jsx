@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
 import { CartProvider, useCart } from "./Components/Cart/CartContext";
+import Checkout from "./Pages/Checkout/Checkout";
+import GiftPopup from "./Components/GiftPopup/GiftPopup";
 
 import Home from "./Pages/Home";
 import Product from "./Pages/Product";
@@ -32,6 +34,7 @@ function AppRoutes() {
         <Route path="/products/:id" element={<Product />} />
         <Route path="/limited" element={<LimitedPage />} />
         <Route path="/collections" element={<Collections />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </AnimatePresence>
   );
@@ -44,11 +47,11 @@ function CartOverlay() {
     increaseQuantity,
     decreaseQuantity,
     removeFromCart,
+    giftPopup,
   } = useCart();
 
   const [open, setOpen] = useState(false);
 
-  // ✅ stable handlers (IMPORTANT FIX)
   const openCart = () => setOpen(true);
   const closeCart = () => setOpen(false);
 
@@ -58,14 +61,20 @@ function CartOverlay() {
   }, []);
 
   return (
-    <Cart
-      open={open}
-      onClose={closeCart}
-      cartItems={cartItems}
-      increaseQuantity={increaseQuantity}
-      decreaseQuantity={decreaseQuantity}
-      removeFromCart={removeFromCart}
-    />
+    <>
+      {/* CART DRAWER */}
+      <Cart
+        open={open}
+        onClose={closeCart}
+        cartItems={cartItems}
+        increaseQuantity={increaseQuantity}
+        decreaseQuantity={decreaseQuantity}
+        removeFromCart={removeFromCart}
+      />
+
+      {/* 🎁 GIFT POPUP */}
+      {giftPopup && <GiftPopup />}
+    </>
   );
 }
 
@@ -75,8 +84,11 @@ export default function App() {
     <CartProvider>
       <BrowserRouter>
         <ScrollToTop />
+
         <AppRoutes />
-        <CartOverlay /> {/* 👈 GLOBAL CART */}
+
+        {/* GLOBAL CART + POPUPS */}
+        <CartOverlay />
       </BrowserRouter>
     </CartProvider>
   );
